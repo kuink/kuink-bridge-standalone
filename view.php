@@ -8,12 +8,11 @@
 //
 // Moodle is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
+// along with Moodle. If not, see <http://www.gnu.org/licenses/>.
 
 /**
  * Prints a particular instance of kuink
@@ -21,32 +20,31 @@
  * You can have a rather longer description of the file as well,
  * if you like, and it can span multiple lines.
  *
- * @package   mod_kuink
+ * @package mod_kuink
  * @copyright 2010 Your Name
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// for all dates, set utc timezone.
+date_default_timezone_set ( 'UTC' );
 
-//for all dates, set utc timezone. 
-date_default_timezone_set('UTC');
+session_start ();
 
-session_start();
-
-//################################ KUINK START #######################################
+// ################################ KUINK START #######################################
 global $KUINK_INCLUDE_PATH;
-$KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
+$KUINK_INCLUDE_PATH = realpath ( '' ) . '/kuink-core/';
 
 global $KUINK_BRIDGE_CFG;
 
 include ('./bridge_config.php');
 
-if ($_SESSION['kuink.logged']==0)
+if ($_SESSION ['kuink.logged'] == 0)
 	$KUINK_BRIDGE_CFG->application = 'framework.login';
-
-//var_dump($_SESSION['kuink.logged']);
-//var_dump($KUINK_BRIDGE_CFG->application);
+	
+	// var_dump($_SESSION['kuink.logged']);
+	// var_dump($KUINK_BRIDGE_CFG->application);
 
 include ('./kuink-core/view.php');
-//################################ KUINK END #######################################
+// ################################ KUINK END #######################################
 
 ?>

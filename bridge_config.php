@@ -1,7 +1,7 @@
 <?php
-//################################ KUINK START #######################################
+// ################################ KUINK START #######################################
 global $KUINK_INCLUDE_PATH;
-$KUINK_INCLUDE_PATH = realpath('').'/kuink-core/';
+$KUINK_INCLUDE_PATH = realpath ( '' ) . '/kuink-core/';
 
 global $KUINK_BRIDGE_CFG;
 global $CFG;
@@ -12,13 +12,13 @@ $KUINK_BRIDGE_CFG->dataroot = '/opt/moodledata';
 $KUINK_BRIDGE_CFG->kuinkroot = '';
 $KUINK_BRIDGE_CFG->theme = 'adminLTE2';
 
-//######## Authentication stuff ########
-$roles = array();
+// ######## Authentication stuff ########
+$roles = array ();
 $currentRole = 'Teacher';
-$roles[] = $currentRole;
-//$roles[] = 'framework.admin';
+$roles [] = $currentRole;
+// $roles[] = 'framework.admin';
 
-$KUINK_BRIDGE_CFG->application = 'framework.entity'; //Default application
+$KUINK_BRIDGE_CFG->application = 'kuink.pos'; // Default application
 $KUINK_BRIDGE_CFG->configuration = '<Configuration/>';
 
 $KUINK_BRIDGE_CFG->auth->roles = $roles;
@@ -28,8 +28,8 @@ $KUINK_BRIDGE_CFG->auth->currentRole = $currentRole;
 $KUINK_BRIDGE_CFG->auth->user->id = 2460;
 $KUINK_BRIDGE_CFG->auth->user->firstName = 'Demo';
 $KUINK_BRIDGE_CFG->auth->user->lastName = 'User';
-$KUINK_BRIDGE_CFG->auth->user->lang = 'pt';
+$KUINK_BRIDGE_CFG->auth->user->lang = 'en';
 $KUINK_BRIDGE_CFG->auth->sessionKey = null;
 
-//################################ KUINK END #######################################
+// ################################ KUINK END #######################################
 ?>

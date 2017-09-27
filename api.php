@@ -21,10 +21,26 @@
 // 4- Create a token for a specific user and for the service 'My service' (Admin > Plugins > Web services > Manage tokens)
 // 5- Run this script directly from your browser: you should see 'Hello, FIRSTNAME'
 
+date_default_timezone_set ( 'UTC' );
+
+global $KUINK_INCLUDE_PATH;
+$KUINK_INCLUDE_PATH = realpath ( '' ) . '/kuink-core/';
+
+global $KUINK_BRIDGE_CFG;
+
+include ('./bridge_config.php');
+
+//Bypass for testing purposes
+//TODO: Remove this line
+$_SESSION ['_kuink_api_security_bypass'] = true;
+
+include ('./kuink-core/api.php');
+
+
+/*
 // for all dates, set utc timezone. jmpatricio
 date_default_timezone_set ( 'UTC' );
 
-global $CFG;
 require_once (dirname ( dirname ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) ) ) . '/config.php');
 require_once (dirname ( dirname ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) ) ) . '/login/lib.php');
 require_once (dirname ( dirname ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) ) ) . '/webservice/lib.php');
@@ -34,6 +50,10 @@ global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG;
 include ('./bridge_config.php');
 
 require_once ($KUINK_INCLUDE_PATH . "kuink_includes.php");
+
+//Bypass for testing purposes
+//TODO: Remove this line
+$_SESSION ['_kuink_api_security_bypass'] = true;
 
 // Authenticate user if token is present
 if (isset ( $_GET ['token'] )) {
@@ -57,5 +77,5 @@ if (isset ( $_GET ['token'] )) {
 }
 
 include ('./kuink-core/api.php');
-
+*/
 ?>

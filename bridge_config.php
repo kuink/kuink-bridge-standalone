@@ -18,7 +18,7 @@ $currentRole = 'Teacher';
 $roles [] = $currentRole;
 // $roles[] = 'framework.admin';
 
-$KUINK_BRIDGE_CFG->application = 'framework.entity'; // Default application
+$KUINK_BRIDGE_CFG->application = 'framework.page'; // Default application
 $KUINK_BRIDGE_CFG->configuration = '<Configuration/>';
 
 $KUINK_BRIDGE_CFG->auth->roles = $roles;

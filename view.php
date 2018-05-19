@@ -26,7 +26,7 @@ else {
 	// var_dump($_SESSION['kuink.logged']);
 	// var_dump($KUINK_BRIDGE_CFG->application);
 
-include ('./kuink-core/view.php');
+include ($KUINK_INCLUDE_PATH.'view.php');
 // ################################ KUINK END #######################################
 
 ?>

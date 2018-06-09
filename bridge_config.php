@@ -7,11 +7,13 @@ global $KUINK_BRIDGE_CFG;
 global $CFG;
 $KUINK_BRIDGE_CFG = new stdClass;
 $KUINK_BRIDGE_CFG->loginhttps = false;
-$KUINK_BRIDGE_CFG->wwwroot = 'http://localhost/kuink';
-$KUINK_BRIDGE_CFG->dirroot = '/var/www/html/kuink';
-$KUINK_BRIDGE_CFG->dataroot = '/opt/kuinkdata/';
-$KUINK_BRIDGE_CFG->kuinkroot = '';
-$KUINK_BRIDGE_CFG->theme = 'adminLTE2';
+$KUINK_BRIDGE_CFG->wwwRoot = 'http://localhost/kuink';
+$KUINK_BRIDGE_CFG->dirRoot = '/var/www/html/kuink';
+$KUINK_BRIDGE_CFG->dataRoot = '/opt/kuinkdata/';
+$KUINK_BRIDGE_CFG->appRoot = $KUINK_BRIDGE_CFG->dataRoot.'/kuink/';
+$KUINK_BRIDGE_CFG->kuinkRoot = '';
+$KUINK_BRIDGE_CFG->theme = 'adminlte';
+$KUINK_BRIDGE_CFG->uploadVirtualPrefix = ''; //Only for neon compatibility. Leave blank in a fresh install.
 
 // ######## Authentication stuff ########
 $roles = array ();

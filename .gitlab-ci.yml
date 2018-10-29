@@ -6,7 +6,6 @@ before_script:
   - echo "extension=ast.so" > /opt/docker/etc/php/php.ini
   - composer install
   - cp .env.example .env
-  -
 
 stages:
   - test

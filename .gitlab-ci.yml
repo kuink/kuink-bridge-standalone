@@ -1,35 +1,23 @@
-image: docker:stable
+image: webdevops/php-nginx:7.2
 
-variables:
-  CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
-
-stages:
-  - build
-  - test
-  - clean
 
 before_script:
-- docker info
-- docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
+  - pecl install ast
+  - echo "extension=ast.so" > /opt/docker/etc/php/php.ini
+  - composer install
+  - cp .env.example .env
+  -
 
-build:
-  stage: build
-  script:
-  - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_SHA --tag $CONTAINER_IMAGE:latest .
-  - docker push $CONTAINER_IMAGE:$CI_COMMIT_SHA
+stages:
+  - test
 
 
 phan-test:
   stage: test
   script:
-    - docker run --pull $CONTAINER_IMAGE:$CI_COMMIT_SHA cd app && ./vendor/bin/phan
+    - ./vendor/bin/phan
 
 code-style-test:
   stage: test
   script:
-    - docker run --pull $CONTAINER_IMAGE:$CI_COMMIT_SHA cd app && ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
-
-clean-images:
-  stage: clean
-  script:
-    - docker rm -f $CONTAINER_IMAGE:$CI_COMMIT_SHA
+    - ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no

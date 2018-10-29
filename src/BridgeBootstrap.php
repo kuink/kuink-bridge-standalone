@@ -41,7 +41,7 @@ class BridgeBootstrap
         $KUINK_BRIDGE_CFG->uploadVirtualPrefix = getenv('UPLOAD_VIRTUAL_PREFIX'); //Only for neon compatibility. Leave blank in a fresh install.
 
         // ######## Authentication stuff ########
-        $roles = array();
+        $roles = [];
         $currentRole = getenv('AUTH_CURRENT_ROLE');
         $roles[] = $currentRole;
         // $roles[] = 'framework.admin';

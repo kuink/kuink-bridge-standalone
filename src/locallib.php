@@ -31,8 +31,9 @@
  * @param mixed $obj
  * @return string
  */
-function kuink_isnull($obj) {
-	return isset ( $obj ) ? $obj : '';
+function kuink_isnull($obj)
+{
+    return isset($obj) ? $obj : '';
 }
 
 // ////////////////////////////////////////////////////////////////////////////////////
@@ -40,36 +41,39 @@ function kuink_isnull($obj) {
 // / starts with kuinkkuink_
 
 // Private debug functions
-function kuink_mydebug($name, $value) {
-//	$html = '<div style="background-color:#BBFF00; font-size:small; border: solid 1px; border-color:#ffffff;"><b><i>->&nbsp;</i>' . $name . '</b> <i>' . $value . '</i></div>';
-//	$layout = \kuink\UI\Layout\Layout::getInstance ();
-//	$layout->addHtml ( $html, 'debugMessages' );
+function kuink_mydebug($name, $value)
+{
+    //	$html = '<div style="background-color:#BBFF00; font-size:small; border: solid 1px; border-color:#ffffff;"><b><i>->&nbsp;</i>' . $name . '</b> <i>' . $value . '</i></div>';
+    //	$layout = \kuink\UI\Layout\Layout::getInstance ();
+    //	$layout->addHtml ( $html, 'debugMessages' );
 
-	return;
+    return;
 }
-function kuink_mydebugxml($name, $xml) {
-	$xml2print = str_replace ( '>', '&gt;', $xml );
-	$xml2print = str_replace ( '<', '&lt;', $xml );
-	
-	kuink_mydebug ( $name, $xml2print );
-	return 1;
+function kuink_mydebugxml($name, $xml)
+{
+    $xml2print = str_replace('>', '&gt;', $xml);
+    $xml2print = str_replace('<', '&lt;', $xml);
+    
+    kuink_mydebug($name, $xml2print);
+    return 1;
 }
-function kuink_mydebugobj($name, $obj) {
-	$value = var_export ( $obj, true );
-	$order = array (
-			"\r\n",
-			"\n",
-			"\r" 
-	);
-	$replace = '<br />';
-	
-	// Processes \r\n's first so they aren't converted twice.
-	$newstr = str_replace ( $order, $replace, $value );
-	
-	kuink_mydebug ( $name, $newstr );
-	// var_dump( $obj );
-	
-	return 1;
+function kuink_mydebugobj($name, $obj)
+{
+    $value = var_export($obj, true);
+    $order = [
+            "\r\n",
+            "\n",
+            "\r"
+    ];
+    $replace = '<br />';
+    
+    // Processes \r\n's first so they aren't converted twice.
+    $newstr = str_replace($order, $replace, $value);
+    
+    kuink_mydebug($name, $newstr);
+    // var_dump( $obj );
+    
+    return 1;
 }
 //function kuink_get_string($identifier, $app_name = 'framework', $params = null) {
 //	return \Kuink\Core\Language::getString ( $identifier, $app_name, $params );
@@ -77,11 +81,13 @@ function kuink_mydebugobj($name, $obj) {
 //function kuink_get_help_string($identifier, $app_name = 'framework') {
 //	return \Kuink\Core\Language::getHelpString ( $identifier, $app_name );
 //}
-function redirect($url, $permanent = false, $global = 0) {
-	if ($global == 1)
-		print ('<script language="javascript">window.location.replace(' . $url . ');</script>') ;
-	else
-		header ( 'Location: ' . $url, true, $permanent ? 301 : 302 );
-	
-	exit ();
+function redirect($url, $permanent = false, $global = 0)
+{
+    if ($global == 1) {
+        print('<script language="javascript">window.location.replace(' . $url . ');</script>') ;
+    } else {
+        header('Location: ' . $url, true, $permanent ? 301 : 302);
+    }
+    
+    exit();
 }

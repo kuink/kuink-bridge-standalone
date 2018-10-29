@@ -21,20 +21,20 @@
 // 4- Create a token for a specific user and for the service 'My service' (Admin > Plugins > Web services > Manage tokens)
 // 5- Run this script directly from your browser: you should see 'Hello, FIRSTNAME'
 
-date_default_timezone_set ( 'UTC' );
+date_default_timezone_set('UTC');
 
 global $KUINK_INCLUDE_PATH;
-$KUINK_INCLUDE_PATH = realpath ( '' ) . '/kuink-core/';
+$KUINK_INCLUDE_PATH = realpath('') . '/kuink-core/';
 
 global $KUINK_BRIDGE_CFG;
 
-include ('./bridge_config.php');
+include('./bridge_config.php');
 
 //Bypass for testing purposes
 //TODO: Remove this line
 $_SESSION ['_kuink_api_security_bypass'] = true;
 
-include ('./kuink-core/api.php');
+include('./kuink-core/api.php');
 
 
 /*
@@ -57,25 +57,24 @@ $_SESSION ['_kuink_api_security_bypass'] = true;
 
 // Authenticate user if token is present
 if (isset ( $_GET ['token'] )) {
-	
-	$webservice = new webservice ();
-	$usrArray = $webservice->authenticate_user ( $_GET ['token'] );
-	
-	if (! isset ( $usrArray ['user'] )) {
-		// do nothing
-		require_login ( null, true, $cm );
-	} else {
-		$user = $usrArray ['user'];
-		complete_user_login ( $user );
-		
-		\Kuink\Core\ProcessOrchestrator::registerAPI ( $_GET ['neonfunction'] );
-		
-		$_SESSION ['_kuink_api_security_bypass'] = true;
-	}
+
+    $webservice = new webservice ();
+    $usrArray = $webservice->authenticate_user ( $_GET ['token'] );
+
+    if (! isset ( $usrArray ['user'] )) {
+        // do nothing
+        require_login ( null, true, $cm );
+    } else {
+        $user = $usrArray ['user'];
+        complete_user_login ( $user );
+
+        \Kuink\Core\ProcessOrchestrator::registerAPI ( $_GET ['neonfunction'] );
+
+        $_SESSION ['_kuink_api_security_bypass'] = true;
+    }
 } else {
-	require_login ( null, true, $cm );
+    require_login ( null, true, $cm );
 }
 
 include ('./kuink-core/api.php');
 */
-?>

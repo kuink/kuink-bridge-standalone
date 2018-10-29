@@ -1,4 +1,8 @@
 image: docker:stable
+
+variables:
+  CONTAINER_IMAGE: registry.gitlab.com/$CI_PROJECT_PATH
+
 stages:
   - build
   - test
@@ -6,24 +10,26 @@ stages:
 
 before_script:
 - docker info
+- docker login -u gitlab-ci-token -p $CI_JOB_TOKEN registry.gitlab.com
 
 build:
   stage: build
   script:
-    - docker build -t kuink/kuink-standalone .
+  - docker build --cache-from $CONTAINER_IMAGE:latest --tag $CONTAINER_IMAGE:$CI_COMMIT_SHA --tag $CONTAINER_IMAGE:latest .
+  - docker push $CONTAINER_IMAGE:$CI_COMMIT_SHA
 
 
 phan-test:
   stage: test
   script:
-    - docker run kuink/kuink-standalone cd app && ./vendor/bin/phan
+    - docker run --pull $CONTAINER_IMAGE:$CI_COMMIT_SHA cd app && ./vendor/bin/phan
 
 code-style-test:
   stage: test
   script:
-    - docker run kuink/kuink-standalone cd app && ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
+    - docker run --pull $CONTAINER_IMAGE:$CI_COMMIT_SHA cd app && ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
 
 clean-images:
   stage: clean
   script:
-    - docker rm -f kuink/kuink-standalone
+    - docker rm -f $CONTAINER_IMAGE:$CI_COMMIT_SHA

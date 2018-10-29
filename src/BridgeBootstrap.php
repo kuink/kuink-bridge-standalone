@@ -64,20 +64,6 @@ class BridgeBootstrap
         $KUINK_BRIDGE_CFG->trigger = new \stdClass; //The url to set in breadcrumb after home. On other bridges this is the external point where kuink was triggered. Allow get back to that url
         $KUINK_BRIDGE_CFG->trigger->url = null;
         $KUINK_BRIDGE_CFG->trigger->label = null;
-
-        /** Don't know what is this
-         * if (isset($_SESSION['kuink.logged']) && ($_SESSION['kuink.logged'] === 0)) {
-         * $KUINK_BRIDGE_CFG->application = getenv('LOGIN_APPLICATION');
-         * } else {
-         * //Inject the user from framework.login application through session object
-         * $user = isset($_SESSION['kuink.logged.user']) ? $_SESSION['kuink.logged.user'] : null; //Comes from login application
-         * $KUINK_BRIDGE_CFG->auth->user->id = $user['id'];
-         * $KUINK_BRIDGE_CFG->auth->user->firstName = $user['firstName'];
-         * $KUINK_BRIDGE_CFG->auth->user->lastName = $user['lastName'];
-         * $KUINK_BRIDGE_CFG->auth->user->lang = $user['lang'];
-         * $KUINK_BRIDGE_CFG->auth->sessionKey = null;
-         * }
-         */
     }
 
     /**

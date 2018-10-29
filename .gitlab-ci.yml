@@ -1,0 +1,29 @@
+image: docker:stable
+stages:
+  - build
+  - test
+  - clean
+
+before_script:
+- docker info
+
+build:
+  stage: build
+  script:
+    - docker build -t kuink/kuink-standalone .
+
+
+phan-test:
+  stage: test
+  script:
+    - docker run kuink/kuink-standalone cd app && ./vendor/bin/phan
+
+code-style-test:
+  stage: test
+  script:
+    - docker run kuink/kuink-standalone cd app && ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
+
+clean-images:
+  stage: clean
+  script:
+    - docker rm -f kuink/kuink-standalone

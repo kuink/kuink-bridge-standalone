@@ -9,6 +9,9 @@ use Dotenv\Dotenv;
  */
 class BridgeBootstrap
 {
+    public function startSession(){
+        session_start();
+    }
 
     /**
      * Bootstrap the bridge
@@ -23,7 +26,7 @@ class BridgeBootstrap
         date_default_timezone_set(getenv('DEFAULT_TIMEZONE'));
         ini_set("display_errors=", getenv('DEBUG') == '1' ? '1' : '0');
 
-        session_start();
+
         // ################################ KUINK START #######################################
         global $KUINK_INCLUDE_PATH;
         global $KUINK_BRIDGE_CFG;

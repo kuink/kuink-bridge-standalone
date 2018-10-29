@@ -24,7 +24,8 @@
             
         ],
         "psr-4": {
-            "Kuink\\Bridge\\": "src/"
+            "Kuink\\Bridge\\": "src/",
+            "Kuink\\Bridge\\Tests\\": "tests/"
         }
     },
     "autoload-dev": {

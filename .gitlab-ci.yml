@@ -8,15 +8,20 @@ before_script:
   - cp .env.example .env
 
 stages:
-  - test
-
+  - code-test
+  - unit-test
 
 phan-test:
-  stage: test
+  stage: code-test
   script:
     - ./vendor/bin/phan
 
 code-style-test:
-  stage: test
+  stage: code-test
   script:
     - ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
+
+unit-tests:
+  stage: unit-test
+  script:
+    - ./vendor/bin/phpunit --testsuite Unit

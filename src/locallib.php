@@ -27,14 +27,10 @@
  */
 
 /**
- * Does something really useful with the passed things
- *
- * @param array $things        	
- * @return object
+ * Checks if is_null
+ * @param mixed $obj
+ * @return string
  */
-// function kuink_do_something_useful(array $things) {
-// return new stdClass();
-// }
 function kuink_isnull($obj) {
 	return isset ( $obj ) ? $obj : '';
 }
@@ -45,10 +41,10 @@ function kuink_isnull($obj) {
 
 // Private debug functions
 function kuink_mydebug($name, $value) {
-	$html = '<div style="background-color:#BBFF00; font-size:small; border: solid 1px; border-color:#ffffff;"><b><i>->&nbsp;</i>' . $name . '</b> <i>' . $value . '</i></div>';
-	$layout = \kuink\UI\Layout\Layout::getInstance ();
-	$layout->addHtml ( $html, 'debugMessages' );
-	
+//	$html = '<div style="background-color:#BBFF00; font-size:small; border: solid 1px; border-color:#ffffff;"><b><i>->&nbsp;</i>' . $name . '</b> <i>' . $value . '</i></div>';
+//	$layout = \kuink\UI\Layout\Layout::getInstance ();
+//	$layout->addHtml ( $html, 'debugMessages' );
+
 	return;
 }
 function kuink_mydebugxml($name, $xml) {
@@ -75,12 +71,12 @@ function kuink_mydebugobj($name, $obj) {
 	
 	return 1;
 }
-function kuink_get_string($identifier, $app_name = 'framework', $params = null) {
-	return \Kuink\Core\Language::getString ( $identifier, $app_name, $params );
-}
-function kuink_get_help_string($identifier, $app_name = 'framework') {
-	return \Kuink\Core\Language::getHelpString ( $identifier, $app_name );
-}
+//function kuink_get_string($identifier, $app_name = 'framework', $params = null) {
+//	return \Kuink\Core\Language::getString ( $identifier, $app_name, $params );
+//}
+//function kuink_get_help_string($identifier, $app_name = 'framework') {
+//	return \Kuink\Core\Language::getHelpString ( $identifier, $app_name );
+//}
 function redirect($url, $permanent = false, $global = 0) {
 	if ($global == 1)
 		print ('<script language="javascript">window.location.replace(' . $url . ');</script>') ;

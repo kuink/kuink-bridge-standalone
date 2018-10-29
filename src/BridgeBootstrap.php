@@ -21,7 +21,7 @@ class BridgeBootstrap
 
         // for all dates, set utc timezone.
         date_default_timezone_set(getenv('DEFAULT_TIMEZONE'));
-        ini_set("display_errors", getenv('DEBUG') == 1 ? 1 : 0);
+        ini_set("display_errors=", getenv('DEBUG') == '1' ? '1' : '0');
 
         session_start();
         // ################################ KUINK START #######################################
@@ -66,18 +66,18 @@ class BridgeBootstrap
         $KUINK_BRIDGE_CFG->trigger->label = null;
 
         /** Don't know what is this
-         if (isset($_SESSION['kuink.logged']) && ($_SESSION['kuink.logged'] === 0)) {
-             $KUINK_BRIDGE_CFG->application = getenv('LOGIN_APPLICATION');
-            } else {
-                //Inject the user from framework.login application through session object
-                $user = isset($_SESSION['kuink.logged.user']) ? $_SESSION['kuink.logged.user'] : null; //Comes from login application
-                $KUINK_BRIDGE_CFG->auth->user->id = $user['id'];
-                $KUINK_BRIDGE_CFG->auth->user->firstName = $user['firstName'];
-                $KUINK_BRIDGE_CFG->auth->user->lastName = $user['lastName'];
-                $KUINK_BRIDGE_CFG->auth->user->lang = $user['lang'];
-                $KUINK_BRIDGE_CFG->auth->sessionKey = null;
-            }
-        */
+         * if (isset($_SESSION['kuink.logged']) && ($_SESSION['kuink.logged'] === 0)) {
+         * $KUINK_BRIDGE_CFG->application = getenv('LOGIN_APPLICATION');
+         * } else {
+         * //Inject the user from framework.login application through session object
+         * $user = isset($_SESSION['kuink.logged.user']) ? $_SESSION['kuink.logged.user'] : null; //Comes from login application
+         * $KUINK_BRIDGE_CFG->auth->user->id = $user['id'];
+         * $KUINK_BRIDGE_CFG->auth->user->firstName = $user['firstName'];
+         * $KUINK_BRIDGE_CFG->auth->user->lastName = $user['lastName'];
+         * $KUINK_BRIDGE_CFG->auth->user->lang = $user['lang'];
+         * $KUINK_BRIDGE_CFG->auth->sessionKey = null;
+         * }
+         */
     }
 
     /**
@@ -96,8 +96,8 @@ class BridgeBootstrap
      *
      * @return void
      */
-    public function loadCore(){
-        global $KUINK_INCLUDE_PATH;
-        require_once ($KUINK_INCLUDE_PATH.'/view.php');
+    public function loadCore()
+    {
+        return;
     }
 }

@@ -9,7 +9,8 @@ use Dotenv\Dotenv;
  */
 class BridgeBootstrap
 {
-    public function startSession(){
+    public function startSession()
+    {
         session_start();
     }
 

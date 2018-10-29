@@ -1,0 +1,12 @@
+# Composer
+/vendor/
+/composer.lock
+
+# IDE settings
+.idea/
+.settings/
+.buildpath
+.project
+
+# Environment files
+/.env

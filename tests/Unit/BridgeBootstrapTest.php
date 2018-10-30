@@ -12,12 +12,11 @@ use Kuink\Bridge\BridgeBootstrap;
 
 class BridgeBootstrapTest extends BaseUnitTest
 {
-
-    public function testLoadEnv(){
+    public function testLoadEnv()
+    {
         $bootstrap = new BridgeBootstrap();
         $bootstrap->bootstrap();
         global $KUINK_BRIDGE_CFG;
         $this->assertNotEmpty($KUINK_BRIDGE_CFG, 'Configuration loaded into $KUINK_BRIDGE_CFG');
     }
-
 }

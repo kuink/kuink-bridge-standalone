@@ -3,6 +3,7 @@
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
     ->in('src')
+    ->in('tests')
     ->in('public')
 ;
 

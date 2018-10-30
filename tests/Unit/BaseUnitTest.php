@@ -5,5 +5,4 @@ use PHPUnit\Framework\TestCase;
 
 abstract class BaseUnitTest extends TestCase
 {
-
 }

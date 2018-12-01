@@ -75,12 +75,12 @@ function kuink_mydebugobj($name, $obj)
     
     return 1;
 }
-//function kuink_get_string($identifier, $app_name = 'framework', $params = null) {
-//	return \Kuink\Core\Language::getString ( $identifier, $app_name, $params );
-//}
-//function kuink_get_help_string($identifier, $app_name = 'framework') {
-//	return \Kuink\Core\Language::getHelpString ( $identifier, $app_name );
-//}
+function kuink_get_string($identifier, $app_name = 'framework', $params = null) {
+	return \Kuink\Core\Language::getString ( $identifier, $app_name, $params );
+}
+function kuink_get_help_string($identifier, $app_name = 'framework') {
+	return \Kuink\Core\Language::getHelpString ( $identifier, $app_name );
+}
 function redirect($url, $permanent = false, $global = 0)
 {
     if ($global == 1) {

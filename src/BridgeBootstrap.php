@@ -39,7 +39,7 @@ class BridgeBootstrap
         $KUINK_BRIDGE_CFG->wwwRoot = getenv('WWW_ROOT');
         $KUINK_BRIDGE_CFG->dirRoot = getenv('DIR_ROOT');
         $KUINK_BRIDGE_CFG->dataRoot = getenv("DATA_ROOT");
-        $KUINK_BRIDGE_CFG->appRoot = getenv('DATA_ROOT');
+        $KUINK_BRIDGE_CFG->appRoot = getenv('APPS_ROOT');
         $KUINK_BRIDGE_CFG->kuinkRoot = getenv('KUINK_ROOT');
         $KUINK_BRIDGE_CFG->theme = getenv('THEME');
         $KUINK_BRIDGE_CFG->uploadVirtualPrefix = getenv('UPLOAD_VIRTUAL_PREFIX'); //Only for neon compatibility. Leave blank in a fresh install.
@@ -51,7 +51,7 @@ class BridgeBootstrap
         // $roles[] = 'framework.admin';
 
         $KUINK_BRIDGE_CFG->application = getenv('DEFAULT_APPLICATION'); // Default application
-        $KUINK_BRIDGE_CFG->configuration = getenv('DEFAULT_CONFGURATION');
+        $KUINK_BRIDGE_CFG->configuration = getenv('DEFAULT_CONFIGURATION');
 
         $KUINK_BRIDGE_CFG->auth = new \stdClass;
         $KUINK_BRIDGE_CFG->auth->user = new \stdClass;
@@ -88,6 +88,23 @@ class BridgeBootstrap
      */
     public function loadCore()
     {
-        return;
+
+        global $KUINK_BRIDGE_CFG, $KUINK_CFG;
+
+        require_once ('./kuink-core/bootstrap/autoload.php');
+
+
+
+
+
+        $layoutAdapter = \Kuink\UI\Layout\Layout::getInstance ();
+        $layoutAdapter->setCache ( false );
+        $layoutAdapter->setTheme ( 'adminlte' );
+
+        $kuinkCore = new \Kuink\Core($KUINK_BRIDGE_CFG, $layoutAdapter, $KUINK_CFG);
+
+        $kuinkCore->run();
+
+        $layoutAdapter->render();
     }
 }

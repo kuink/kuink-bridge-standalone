@@ -1,10 +1,10 @@
 <?php
-global $KUINK_INCLUDE_PATH;
-$KUINK_INCLUDE_PATH = realpath('') . '/kuink-core/';
 
-global $KUINK_BRIDGE_CFG;
+require_once '../vendor/autoload.php';
 
-include('./bridge_config.php');
+use Kuink\Bridge\BridgeBootstrap;
 
-include('./kuink-core/stream.php');
-//################################ KUINK END #######################################
+$bridgeBootstrap = new BridgeBootstrap();
+$bridgeBootstrap->startSession();
+$bridgeBootstrap->bootstrap();
+$bridgeBootstrap->stream();

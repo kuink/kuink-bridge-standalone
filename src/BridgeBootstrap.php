@@ -17,6 +17,7 @@ class BridgeBootstrap
     public function startSession()
     {
         session_start();
+        ob_start();
     }
 
     /**
@@ -82,7 +83,7 @@ class BridgeBootstrap
         $guid = $_GET['guid'];
 
 
-        $kuinkCore = new \Kuink\Core($KUINK_BRIDGE_CFG, null, $KUINK_CFG);
+        $kuinkCore = new \Kuink\Core\Core();
         $kuinkCore->stream($type, $guid);
     }
 

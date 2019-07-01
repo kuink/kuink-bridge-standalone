@@ -4,6 +4,8 @@ namespace Kuink\Bridge;
 
 use Dotenv\Dotenv;
 use Kuink\Core\Configuration;
+use Kuink\Core\Core;
+use Kuink\Core\ProcessOrchestrator;
 
 /**
  * Does the bridge bootstrap
@@ -61,7 +63,7 @@ class BridgeBootstrap
         $layoutAdapter->setCache(false);
         $layoutAdapter->setTheme('adminlte');
 
-        $kuinkCore = new \Kuink\Core\Core();
+        $kuinkCore = new Core();
         $kuinkCore->run();
 
         $layoutAdapter->render();
@@ -83,7 +85,7 @@ class BridgeBootstrap
         $guid = $_GET['guid'];
 
 
-        $kuinkCore = new \Kuink\Core\Core();
+        $kuinkCore = new Core();
         $kuinkCore->stream($type, $guid);
     }
 
@@ -96,10 +98,10 @@ class BridgeBootstrap
         $function = isset($_GET['neonfunction']) ? ( string )$_GET['neonfunction'] : '';
 
         //Authenticate user if token is present
-        \Kuink\Core\ProcessOrchestrator::registerAPI($function);
+        ProcessOrchestrator::registerAPI($function);
         $_SESSION['_kuink_api_security_bypass'] = true;
 
-        $kuinkCore = new \Kuink\Core($KUINK_BRIDGE_CFG, null, $KUINK_CFG);
+        $kuinkCore = new Core();
         $kuinkCore->call($function);
     }
 }

@@ -29,11 +29,10 @@ class BridgeBootstrap
      */
     public function bootstrap()
     {
-
-
-
-
-        $configurationValues = parse_ini_file(__DIR__.'../../../config/config.ini', true, INI_SCANNER_TYPED);
+        $configurationValues = parse_ini_file(__DIR__.'/../../../config/config.ini', true, INI_SCANNER_TYPED);
+        if ($configurationValues === false) {
+            die('No configuration found in '.realpath(__DIR__.'/../../../config/config.ini'));
+        }
         $configuration = Configuration::creatFromArray($configurationValues);
 
         // for all dates, set utc timezone.

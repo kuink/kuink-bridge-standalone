@@ -14,48 +14,68 @@
  * @authorr Jerome Mouneyrac
  */
 
-/// MOODLE ADMINISTRATION SETUP STEPS
+// / MOODLE ADMINISTRATION SETUP STEPS
 // 1- Install the plugin
 // 2- Enable web service advance feature (Admin > Advanced features)
 // 3- Enable XMLRPC protocol (Admin > Plugins > Web services > Manage protocols)
 // 4- Create a token for a specific user and for the service 'My service' (Admin > Plugins > Web services > Manage tokens)
 // 5- Run this script directly from your browser: you should see 'Hello, FIRSTNAME'
 
-//for all dates, set utc timezone. jmpatricio
-date_default_timezone_set('UTC');
+date_default_timezone_set ( 'UTC' );
 
-global $CFG;
-require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/config.php');
-require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/login/lib.php');
-require_once(dirname(dirname(dirname($_SERVER['SCRIPT_FILENAME']))).'/webservice/lib.php');
+global $KUINK_INCLUDE_PATH;
+$KUINK_INCLUDE_PATH = realpath ( '' ) . '/kuink-core/';
+
+global $KUINK_BRIDGE_CFG;
+
+include ('./bridge_config.php');
+
+//Bypass for testing purposes
+//TODO: Remove this line
+$_SESSION ['_kuink_api_security_bypass'] = true;
+
+include ('./kuink-core/api.php');
+
+
+/*
+// for all dates, set utc timezone. jmpatricio
+date_default_timezone_set ( 'UTC' );
+
+require_once (dirname ( dirname ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) ) ) . '/config.php');
+require_once (dirname ( dirname ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) ) ) . '/login/lib.php');
+require_once (dirname ( dirname ( dirname ( $_SERVER ['SCRIPT_FILENAME'] ) ) ) . '/webservice/lib.php');
 
 global $KUINK_INCLUDE_PATH, $KUINK_BRIDGE_CFG;
 
 include ('./bridge_config.php');
 
-require_once($KUINK_INCLUDE_PATH."kuink_includes.php");
+require_once ($KUINK_INCLUDE_PATH . "kuink_includes.php");
 
-//Authenticate user if token is present
-if (isset($_GET['token'])) {
+//Bypass for testing purposes
+//TODO: Remove this line
+$_SESSION ['_kuink_api_security_bypass'] = true;
 
-	$webservice = new webservice();
-	$usrArray = $webservice->authenticate_user($_GET['token']);
-
-	if (!isset($usrArray['user'])) {
+// Authenticate user if token is present
+if (isset ( $_GET ['token'] )) {
+	
+	$webservice = new webservice ();
+	$usrArray = $webservice->authenticate_user ( $_GET ['token'] );
+	
+	if (! isset ( $usrArray ['user'] )) {
 		// do nothing
-		require_login(null, true, $cm);
+		require_login ( null, true, $cm );
 	} else {
-		$user = $usrArray['user'];
-		complete_user_login($user);
-
-		\Kuink\Core\ProcessOrchestrator::registerAPI($_GET['neonfunction']);
-
-		$_SESSION['_kuink_api_security_bypass'] = true;
+		$user = $usrArray ['user'];
+		complete_user_login ( $user );
+		
+		\Kuink\Core\ProcessOrchestrator::registerAPI ( $_GET ['neonfunction'] );
+		
+		$_SESSION ['_kuink_api_security_bypass'] = true;
 	}
 } else {
-	require_login(null, true, $cm);
+	require_login ( null, true, $cm );
 }
 
 include ('./kuink-core/api.php');
-
+*/
 ?>
